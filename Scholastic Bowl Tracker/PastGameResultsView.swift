@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct PastGameResultsView: View {
+    @State var match: MatchClass
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(match.team1Name + " vs. " + match.team2Name)
+        Text(match.team1Name + " had \(match.team1Score)")
+        Text(match.team2Name + " had \(match.team2Score)")
+        Text(match.determineWinner())
+
     }
 }
 
 #Preview {
-    PastGameResultsView()
+    PastGameResultsView(match: MatchClass())
 }

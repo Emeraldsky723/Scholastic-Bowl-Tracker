@@ -6,10 +6,19 @@
 //
 
 import SwiftUI
-
+import SwiftData
 struct PastGameView: View {
+    @Query var matches: [MatchClass]
     var body: some View {
-        Text("Past Game View")
+        NavigationStack{
+            List{
+                ForEach(matches, id: \.self.id){match in
+                    NavigationLink(match.team1Name + " vs. " + match.team2Name){
+                        PastGameResultsView(match: match)
+                    }
+                }
+            }
+        }
     }
 }
 

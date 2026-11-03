@@ -6,9 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
+@Observable
+class AppData{
+    var currentMatchData = MatchClass()
+    static let shared = AppData()
+    private init(){}
+}
+
 
 struct ContentView: View {
-    
+    @Environment(\.modelContext) var context
+    @Query var matches: [MatchClass]
     
     var body: some View {
         NavigationStack{
@@ -61,6 +70,11 @@ struct ContentView: View {
             }
             .padding()
             .background(.blue)
+            .onAppear{
+                AppData.shared.currentMatchData = MatchClass()
+            }
+           
+            
         }
     }
 }

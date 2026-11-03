@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
-
+import SwiftData
 @main
 struct Scholastic_Bowl_TrackerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(for: [MatchClass.self])
         }
     }
 }
