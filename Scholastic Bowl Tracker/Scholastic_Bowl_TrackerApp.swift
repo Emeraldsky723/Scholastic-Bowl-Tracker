@@ -12,7 +12,7 @@ struct Scholastic_Bowl_TrackerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .modelContainer(for: [MatchClass.self])
+                .modelContainer(for: [MatchClass.self, Team.self])
         }
     }
 }

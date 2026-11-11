@@ -6,10 +6,22 @@
 //
 
 import SwiftUI
-
+import SwiftData
 struct RosterView: View {
+    @Query var roster: [Student]
+    @Query var team: [Team]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(team.first?.teamName ?? "Nothing")
+        ScrollView{
+            
+                ForEach(roster, id: \.self.id){student in
+                    Text(student.name)
+                    
+                    
+                }
+               
+            
+        }
     }
 }
 

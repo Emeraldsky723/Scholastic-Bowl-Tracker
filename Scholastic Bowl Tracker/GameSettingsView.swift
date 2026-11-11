@@ -21,7 +21,9 @@ struct GameSettingsView: View {
             }
             TextField("Enter team 2 name",text: $team2Name)
             Button{
-                AppData.shared.currentMatchData.changeTeam2Name(name: team2Name)            }
+                AppData.shared.currentMatchData.changeTeam2Name(name: team2Name)
+                
+            }
             label:{
                 Text("Save Button")
             }

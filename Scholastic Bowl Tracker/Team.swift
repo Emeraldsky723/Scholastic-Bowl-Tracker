@@ -6,14 +6,15 @@
 //
 
 import Foundation
-
+import SwiftData
+@Model
 class Team{
     var teamName: String
     var roster: [Student]
     
-    init(teamName: String, roster: [Student]) {
-        self.teamName = teamName
-        self.roster = roster
+    init() {
+        teamName = "Default Team"
+        roster = []
     }
     
     func rawScoreLineup() -> [Student]{
@@ -26,20 +27,19 @@ class Team{
         
         return lineup
     }
-    
-    //maybe an int for determining which speciality it is then just have If statements for each number?
-    func specialityLineup() -> [Student]{
-        var lineup: [Student] = []
+    func rankingsSpecialtys(speciality: Int) -> [Student] {
+        //put the highest scores first
+        var rankings: [Student] = []
+        for index in 0..<roster.count{
+            if roster[index].specialty == speciality{
+                rankings.append(roster[index])
+            }
+        }
         
-        return lineup
-    }
-    
-    func stemOrHumanitiesLineup(stem: Bool) -> [Student]{
-        var lineup: [Student] = []
         
-        return lineup
+        
+        return rankings
     }
-
 
     
 }

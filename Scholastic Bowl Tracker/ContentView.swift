@@ -18,14 +18,15 @@ class AppData{
 struct ContentView: View {
     @Environment(\.modelContext) var context
     @Query var matches: [MatchClass]
-    
+    @Query var tempTeam: [Team]
+    @State var team = Team()
     var body: some View {
         NavigationStack{
             VStack {
                 HStack{
                     Spacer()
                     NavigationLink{
-                     CoachSettingsView()
+                     CoachSettingsView(team: team)
                     }
                     label:{
                         Image(systemName: "gearshape.fill")
@@ -65,6 +66,18 @@ struct ContentView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 20))
 
                 }
+                NavigationLink{
+                    RosterView()
+                }
+                label:{
+                    Text("See Roster")
+                        .font(.custom("Didot Bold", size: 30, relativeTo: .largeTitle))
+                        .padding()
+                        .foregroundStyle(.black)
+                        .background(.red)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+
+                }
                 Spacer()
                 Spacer()
             }
@@ -72,6 +85,8 @@ struct ContentView: View {
             .background(.blue)
             .onAppear{
                 AppData.shared.currentMatchData = MatchClass()
+                 team = tempTeam.first ?? Team()
+                context.insert(team)
             }
            
             
